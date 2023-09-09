@@ -6,7 +6,7 @@ realLife <- function(data, covariate, group, fittingModel="NB", slope=FALSE, par
   fitModel <- ifelse(fittingModel == "NB", fitNBmodel, fitCPmodel)
   computeVPCModel <- ifelse(fittingModel == "NB", computeNBVPC, computeCPVPC)
   fit <- fitModel(data, covariate, slope, parallel)
-  vpc <- computeVPCModel(fit, group)
+  vpc <- computeVPCModel(fit$params, group)
   colnames(vpc) <- "vpc"
   rownames(vpc) <- paste("Gene", 1:nrow(vpc))
   vpc
