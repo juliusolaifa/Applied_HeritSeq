@@ -6,11 +6,7 @@ library(HeritSeq2)
 realLife <- function(data, covariate, group, fittingModel="NB", slope=FALSE, parallel=1, reportWarning=FALSE) {
   fitModel <- ifelse(fittingModel == "NB", fitNBmodel, fitCPmodel)
   computeVPCModel <- ifelse(fittingModel == "NB", computeNBVPC, computeCPVPC)
-<<<<<<< HEAD
-  fit <- fitModel(data, covariate, slope, parallel)
-=======
   fit <- fitModel(data, covariate, slope, parallel, reportWarning)
->>>>>>> f62990b2dd5cece6ce26d03663695b1a981e32e1
   vpc <- computeVPCModel(fit$params, group)
   colnames(vpc) <- "vpc"
   rownames(vpc) <- paste("Gene", 1:nrow(vpc))
